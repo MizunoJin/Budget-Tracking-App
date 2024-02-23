@@ -16,7 +16,7 @@ namespace Budget_Tracking_App.Seeds
             var salary = new Category { Name = "Salary" };
             var entertainment = new Category { Name = "Entertainment" };
 
-                        // Initialize user with transactions
+            // Initialize user with transactions
             var user = new User
             {
                 UserId = 1,
