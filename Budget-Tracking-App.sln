@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Budget-Tracking-App", "Budget-Tracking-App.csproj", "{9797388C-971A-4642-BEB0-93C50D190542}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9797388C-971A-4642-BEB0-93C50D190542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9797388C-971A-4642-BEB0-93C50D190542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9797388C-971A-4642-BEB0-93C50D190542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9797388C-971A-4642-BEB0-93C50D190542}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20F94B3E-D3E2-4B68-B356-B4D1310F764A}
+	EndGlobalSection
+EndGlobal
