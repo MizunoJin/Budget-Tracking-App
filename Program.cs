@@ -176,7 +176,23 @@ class Program
 
     static void DeleteTransactions(User user)
     {
-        // Implementation to delete transactions
+        Console.WriteLine("Enter the Transaction ID to delete:");
+        int transactionId = int.Parse(Console.ReadLine());
+
+        // トランザクションをIDで検索
+        var transaction = user.TransactionList.FirstOrDefault(t => t.TransactionId == transactionId);
+
+        if (transaction != null)
+        {
+            // トランザクションが見つかった場合、リストから削除
+            user.TransactionList.Remove(transaction);
+            Console.WriteLine("Transaction deleted successfully.");
+        }
+        else
+        {
+            // トランザクションが見つからなかった場合、メッセージを表示
+            Console.WriteLine("Transaction not found.");
+        }
     }
 
     static void ViewCategories(User user)
