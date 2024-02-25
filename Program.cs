@@ -19,9 +19,10 @@ class Program
             Console.WriteLine("3. Edit Transactions");
             Console.WriteLine("4. Delete Transactions");
             Console.WriteLine("5. View Categories");
-            Console.WriteLine("6. Enter Budget");
-            Console.WriteLine("7. Track Budget");
-            Console.WriteLine("8. Exit");
+            Console.WriteLine("6. Enter Categories");
+            Console.WriteLine("7. Enter Budget");
+            Console.WriteLine("8. Track Budget");
+            Console.WriteLine("9. Exit");
             Console.Write("Select an option: ");
 
             switch (Console.ReadLine())
@@ -42,12 +43,15 @@ class Program
                     ViewCategories(user);
                     break;
                 case "6":
-                    EnterBudget(user);
+                    EnterCategory(user);
                     break;
                 case "7":
-                    TrackBudget(user);
+                    EnterBudget(user);
                     break;
                 case "8":
+                    TrackBudget(user);
+                    break;
+                case "9":
                     exit = true;
                     break;
                 default:
@@ -239,20 +243,100 @@ class Program
         {
             Console.WriteLine($"Category ID: {category.CategoryId}");
             Console.WriteLine($"Name: {category.Name}");
-            Console.WriteLine($"Opening Date: {category.OpeningDate}");
-            Console.WriteLine($"Budget Allocated: {category.BudgetAllocated}");
+            Console.WriteLine($"Budget Allocated: {category.Budget?.Amount ?? 0}");
             Console.WriteLine($"Balance: {category.Balance}");
             Console.WriteLine("------------------------------");
         }
     }
 
+    static void EnterCategory(User user)
+    {
+        Console.WriteLine("Enter new category name:");
+        string categoryName = Console.ReadLine() ?? "Default Category";
+
+        // Create a new UserCategory instance and set its properties
+        UserCategory newUserCategory = new UserCategory
+        {
+            User = user,
+            Name = categoryName,
+            Budget = null, // Or set a budget if needed
+            Balance = 0 // Initial balance can be set here
+        };
+
+        // Add the new UserCategory to the user's UserCategoryList
+        user.UserCategoryList.Add(newUserCategory);
+
+        Console.WriteLine($"New category '{categoryName}' has been added successfully.");
+    }
+
     static void EnterBudget(User user)
     {
-        // Implementation to enter a budget
+        List<PresetCategory> presetCategories = PresetCategory.GetInstances();
+        List<UserCategory> userCategories = user.UserCategoryList;
+        List<Category> categories = presetCategories.Cast<Category>().Concat(userCategories.Cast<Category>()).ToList();
+
+        // Display categories
+        Console.WriteLine("Please select a category by entering the corresponding number:");
+        for (int i = 0; i < categories.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {categories[i].Name}");
+        }
+
+        // User selects a category
+        int choice = Convert.ToInt32(Console.ReadLine()) - 1;
+
+        Category category = null;
+
+        if (choice >= 0 && choice < categories.Count)
+        {
+            category = categories[choice];
+            Console.WriteLine($"You selected: {category.Name}");
+        }
+        else
+        {
+            Console.WriteLine("Invalid selection.");
+        }
+
+        Console.WriteLine("Enter the budget amount:");
+        double amount = Convert.ToDouble(Console.ReadLine());
+
+        Budget newBudget = new Budget
+        {
+            User = user,
+            Category = category,
+            Amount = amount
+        };
+
+        user.Budgets.Add(newBudget);
+
+        // Assuming you have a way to save or add this budget to a collection
+        Console.WriteLine($"Budget of {amount} added to category {category.Name}.");
     }
 
     static void TrackBudget(User user)
     {
-        // Implementation to track budget
+        double totalSpent = 0;
+        double totalBudget = user.Budgets.Sum(b => b.Amount);
+
+        Console.WriteLine("Budget Tracking Report:");
+        Console.WriteLine("-----------------------");
+
+        foreach (var budget in user.Budgets)
+        {
+            double spent = budget.Category.TransactionList.Sum(t => t.TransactionAmount);
+            totalSpent += spent;
+            double remaining = budget.Amount - spent;
+
+            Console.WriteLine($"Category: {budget.Category.Name}");
+            Console.WriteLine($"Budgeted: {budget.Amount:C}");
+            Console.WriteLine($"Spent: {spent:C}");
+            Console.WriteLine($"Remaining: {remaining:C}");
+            Console.WriteLine("-------------");
+        }
+
+        Console.WriteLine("Total Budget: " + totalBudget.ToString("C"));
+        Console.WriteLine("Total Spent: " + totalSpent.ToString("C"));
+        Console.WriteLine("Total Remaining: " + (totalBudget - totalSpent).ToString("C"));
     }
 }
+

@@ -7,19 +7,17 @@ namespace Budget_Tracking_App.Seeds
         public static User GetTestUser()
         {
             // Initialize categories
-            var groceries = new PresetCategory { Name = "Groceries", TransactionList = new List<Transaction>() };
-            var utilities = new PresetCategory { Name = "Utilities", TransactionList = new List<Transaction>()  };
-            var salary = new PresetCategory { Name = "Salary", TransactionList = new List<Transaction>()  };
-            var entertainment = new PresetCategory { Name = "Entertainment", TransactionList = new List<Transaction>()  };
+            var groceries = new PresetCategory { Name = "Groceries" };
+            var utilities = new PresetCategory { Name = "Utilities"  };
+            var salary = new PresetCategory { Name = "Salary"  };
+            var entertainment = new PresetCategory { Name = "Entertainment"  };
 
             // Initialize user with transactions
             var user = new User
             {
                 UserId = 1,
                 Name = "John Doe",
-                Email = "john.doe@example.com",
-                TransactionList = new List<Transaction>(),
-                UserCategoryList = new List<UserCategory>()
+                Email = "john.doe@example.com"
             };
 
             // Initialize transactions
