@@ -320,7 +320,7 @@ class Program
 
         foreach (var budget in user.Budgets)
         {
-            double spent = budget.Category.TransactionList.Sum(t => t.TransactionAmount);
+            double spent = user.TransactionList.Where(t => t.Category == budget.Category).ToList().Sum(t => t.TransactionAmount);
             totalSpent += spent;
             double remaining = budget.Amount - spent;
 
