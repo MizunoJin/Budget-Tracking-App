@@ -91,9 +91,31 @@ class Program
         Console.Write("Amount: ");
         double amount = double.Parse(Console.ReadLine());
 
-        // カテゴリの例ですが、実際のアプリケーションでは、ユーザーが選択するまたは入力するリストから選択します。
-        Console.Write("Category (Food, Utilities, Entertainment, etc.): ");
-        Category category = new Category { Name = Console.ReadLine() }; // 仮のカテゴリオブジェクト作成
+        List<PresetCategory> presetCategories = PresetCategory.GetInstances();
+        List<UserCategory> userCategories = user.UserCategoryList;
+        List<Category> categories = presetCategories.Cast<Category>().Concat(userCategories.Cast<Category>()).ToList();
+
+        // Display categories
+        Console.WriteLine("Please select a category by entering the corresponding number:");
+        for (int i = 0; i < categories.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {categories[i].Name}");
+        }
+
+        // User selects a category
+        int choice = Convert.ToInt32(Console.ReadLine()) - 1;
+
+        Category category = null;
+
+        if (choice >= 0 && choice < categories.Count)
+        {
+            category = categories[choice];
+            Console.WriteLine($"You selected: {category.Name}");
+        }
+        else
+        {
+            Console.WriteLine("Invalid selection.");
+        }
 
         Transaction newTransaction = new Transaction
         {
@@ -159,16 +181,28 @@ class Program
             transactionToEdit.TransactionAmount = double.Parse(amountInput);
         }
 
-        // カテゴリの編集は、実際のアプリケーションではユーザーが利用可能なカテゴリから選択するプロセスを含む可能性があります。
-        Console.Write("New Category ID or press Enter to skip: ");
-        var categoryIdInput = Console.ReadLine();
-        if (!string.IsNullOrEmpty(categoryIdInput))
+        List<PresetCategory> presetCategories = PresetCategory.GetInstances();
+        List<UserCategory> userCategories = user.UserCategoryList;
+        List<Category> categories = presetCategories.Cast<Category>().Concat(userCategories.Cast<Category>()).ToList();
+
+        // Display categories
+        Console.WriteLine("Please select a category by entering the corresponding number:");
+        for (int i = 0; i < categories.Count; i++)
         {
-            // ここではカテゴリの検索や更新をシンプルに保つためにIDのみを使用していますが、
-            // 実際にはカテゴリオブジェクト全体を更新するプロセスが必要です。
-            int categoryId = int.Parse(categoryIdInput);
-            // この例ではカテゴリの更新方法を示していませんが、実際には新しいカテゴリオブジェクトを設定する必要があります。
-            Console.WriteLine("Note: Category update process is not implemented in this example.");
+            Console.WriteLine($"{i + 1}. {categories[i].Name}");
+        }
+
+        // User selects a category
+        int choice = Convert.ToInt32(Console.ReadLine()) - 1;
+
+        if (choice >= 0 && choice < categories.Count)
+        {
+            transactionToEdit.Category = categories[choice];
+            Console.WriteLine($"You selected: {categories[choice].Name}");
+        }
+        else
+        {
+            Console.WriteLine("Invalid selection.");
         }
 
         Console.WriteLine("Transaction updated successfully.");
@@ -197,7 +231,19 @@ class Program
 
     static void ViewCategories(User user)
     {
-        // Implementation to view categories
+        List<PresetCategory> presetCategories = PresetCategory.GetInstances();
+        List<UserCategory> userCategories = user.UserCategoryList;
+        List<Category> categories = presetCategories.Cast<Category>().Concat(userCategories.Cast<Category>()).ToList();
+
+        foreach (var category in categories)
+        {
+            Console.WriteLine($"Category ID: {category.CategoryId}");
+            Console.WriteLine($"Name: {category.Name}");
+            Console.WriteLine($"Opening Date: {category.OpeningDate}");
+            Console.WriteLine($"Budget Allocated: {category.BudgetAllocated}");
+            Console.WriteLine($"Balance: {category.Balance}");
+            Console.WriteLine("------------------------------");
+        }
     }
 
     static void EnterBudget(User user)

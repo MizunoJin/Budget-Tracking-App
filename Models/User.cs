@@ -6,5 +6,6 @@ namespace Budget_Tracking_App.Models
         public required string Name { get; set; }
         public required string Email { get; set; }
         public required List<Transaction> TransactionList { get; set; }
+        public required List<UserCategory> UserCategoryList { get; set; }
     }
 }

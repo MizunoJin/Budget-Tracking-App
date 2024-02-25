@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Budget_Tracking_App.Models;
 
 namespace Budget_Tracking_App.Seeds
@@ -11,10 +7,10 @@ namespace Budget_Tracking_App.Seeds
         public static User GetTestUser()
         {
             // Initialize categories
-            var groceries = new Category { Name = "Groceries" };
-            var utilities = new Category { Name = "Utilities" };
-            var salary = new Category { Name = "Salary" };
-            var entertainment = new Category { Name = "Entertainment" };
+            var groceries = new PresetCategory { Name = "Groceries", TransactionList = new List<Transaction>() };
+            var utilities = new PresetCategory { Name = "Utilities", TransactionList = new List<Transaction>()  };
+            var salary = new PresetCategory { Name = "Salary", TransactionList = new List<Transaction>()  };
+            var entertainment = new PresetCategory { Name = "Entertainment", TransactionList = new List<Transaction>()  };
 
             // Initialize user with transactions
             var user = new User
@@ -22,7 +18,8 @@ namespace Budget_Tracking_App.Seeds
                 UserId = 1,
                 Name = "John Doe",
                 Email = "john.doe@example.com",
-                TransactionList = new List<Transaction>()
+                TransactionList = new List<Transaction>(),
+                UserCategoryList = new List<UserCategory>()
             };
 
             // Initialize transactions
