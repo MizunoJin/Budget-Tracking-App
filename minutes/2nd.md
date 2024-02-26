@@ -1,4 +1,4 @@
-# Team Blog: 1st Group Meeting - Budget Tracking App
+# Team Blog: 2nd Group Meeting - Budget Tracking App
 
 ## Date
 
