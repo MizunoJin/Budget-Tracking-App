@@ -7,9 +7,9 @@ namespace Budget_Tracking_App.Models
         public required Category Category { get; set; }
         public required User User { get; set; }
 
-        public double CalcSpent() {
-            // Get the total amount spent for this budget
-            return User.TransactionList.Where(t => t.Category == Category).ToList().Sum(t => t.TransactionAmount);
+        public double CalcSpent()
+        {
+            return User.CalcSpent(Category);
         }
     }
 }

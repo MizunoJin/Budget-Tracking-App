@@ -20,5 +20,10 @@ namespace Budget_Tracking_App.Models
         {
             return Budgets.Sum(b => b.Amount);
         }
+
+        public double CalcSpent(Category category)
+        {
+            return TransactionList.Where(t => t.Category == category).Sum(t => t.TransactionAmount);
+        }
     }
 }
