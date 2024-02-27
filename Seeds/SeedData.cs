@@ -77,13 +77,10 @@ namespace Budget_Tracking_App.Seeds
 
             Budget budget1 = new Budget { Amount = 5000.0, Category = UserCategory, User = user };
             user.Budgets.Add(budget1);
-            UserCategory.Budget = budget1;
             Budget budget2 = new Budget { Amount = 500.0, Category = groceries, User = user };
             user.Budgets.Add(budget2);
-            UserCategory.Budget = budget2;
             Budget budget3 = new Budget { Amount = 300.0, Category = entertainment, User = user };
             user.Budgets.Add(budget3);
-            UserCategory.Budget = budget3;
 
             return user;
         }
