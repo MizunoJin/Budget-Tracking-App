@@ -1,26 +1,43 @@
 using Budget_Tracking_App.Models;
+using Budget_Tracking_App.Seeds;
 using Budget_Tracking_App.Services;
 
 namespace Budget_Tracking_App
 {
     public class BudgetApp
     {
-        private readonly User _user;
+        private static BudgetApp _instance;
+        private static readonly object _lock = new object();
 
-        public BudgetApp(User user)
+        private BudgetApp()
+        {}
+
+        public static BudgetApp GetInstance()
         {
-            _user = user;
+            if (_instance == null)
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new BudgetApp();
+                    }
+                }
+            }
+            return _instance;
         }
 
         public void Run()
         {
-            Console.WriteLine($"Welcome {_user.Name}!");
+            // Make seed data for testing
+            User user = SeedData.GetTestUser();
+            Console.WriteLine($"Welcome {user.Name}!");
 
             bool exit = false;
             while (!exit)
             {
                 DisplayMainMenu();
-                exit = ProcessMainMenuOption();
+                exit = ProcessMainMenuOption(user);
             }
         }
 
@@ -39,34 +56,34 @@ namespace Budget_Tracking_App
             Console.Write("Select an option: ");
         }
 
-        private bool ProcessMainMenuOption()
+        private bool ProcessMainMenuOption(User user)
         {
             Console.WriteLine();
             switch (Console.ReadLine())
             {
                 case "1":
-                    TransactionService.ViewTransactions(_user);
+                    TransactionService.ViewTransactions(user);
                     break;
                 case "2":
-                    TransactionService.EnterTransaction(_user);
+                    TransactionService.EnterTransaction(user);
                     break;
                 case "3":
-                    TransactionService.EditTransactions(_user);
+                    TransactionService.EditTransactions(user);
                     break;
                 case "4":
-                    TransactionService.DeleteTransactions(_user);
+                    TransactionService.DeleteTransactions(user);
                     break;
                 case "5":
-                    CategoryService.ViewCategories(_user);
+                    CategoryService.ViewCategories(user);
                     break;
                 case "6":
-                    CategoryService.EnterCategory(_user);
+                    CategoryService.EnterCategory(user);
                     break;
                 case "7":
-                    BudgetService.EnterBudget(_user);
+                    BudgetService.EnterBudget(user);
                     break;
                 case "8":
-                    BudgetService.TrackBudget(_user);
+                    BudgetService.TrackBudget(user);
                     break;
                 case "9":
                     return true;
