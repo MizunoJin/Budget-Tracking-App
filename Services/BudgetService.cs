@@ -4,12 +4,14 @@ namespace Budget_Tracking_App.Services
 {
     public class BudgetService
     {
+        private static readonly Logger logger = Logger.GetInstance();
+
         public static void EnterBudget(User user)
         {
+            logger.Debug($"EnterBudget started for user {user.Name}.");
+
             List<Category> categories = user.GetCategories();
-
             CategoryService.DisplayCategories(categories);
-
             var category = CategoryService.SelectCategory(categories);
 
             Console.WriteLine("Enter the budget amount:");
@@ -25,10 +27,15 @@ namespace Budget_Tracking_App.Services
             user.Budgets.Add(newBudget);
 
             Console.WriteLine($"Budget of {amount} added to category {category.Name}.");
+            logger.Info($"Budget of {amount:C} added to category {category.Name} for user {user.Name}.");
+
+            logger.Debug("EnterBudget completed.");
         }
 
         public static void TrackBudget(User user)
         {
+            logger.Debug($"TrackBudget started for user {user.Name}.");
+
             double totalSpent = 0;
             double totalBudget = user.CalcTotalBudget();
 
@@ -46,11 +53,16 @@ namespace Budget_Tracking_App.Services
                 Console.WriteLine($"Spent: {spent:C}");
                 Console.WriteLine($"Remaining: {remaining:C}");
                 Console.WriteLine("-------------");
+
+                logger.Info($"Budget tracking for {budget.Category.Name}: Budgeted: {budget.Amount:C}, Spent: {spent:C}, Remaining: {remaining:C}");
             }
 
             Console.WriteLine("Total Budget: " + totalBudget.ToString("C"));
             Console.WriteLine("Total Spent: " + totalSpent.ToString("C"));
             Console.WriteLine("Total Remaining: " + (totalBudget - totalSpent).ToString("C"));
+
+            logger.Info($"Total Budget: {totalBudget:C}, Total Spent: {totalSpent:C}, Total Remaining: {(totalBudget - totalSpent):C} for user {user.Name}.");
+            logger.Debug("TrackBudget completed.");
         }
     }
 }

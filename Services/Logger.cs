@@ -30,6 +30,11 @@ namespace Budget_Tracking_App.Services
             logRepository = repository;
         }
 
+        public void Warn(string message)
+        {
+            logRepository.Log("WARN: " + message);
+        }
+
         public void Debug(string message)
         {
             logRepository.Log("DEBUG: " + message);
@@ -40,7 +45,7 @@ namespace Budget_Tracking_App.Services
             logRepository.Log("ERROR: " + message);
         }
 
-        public void Inform(string message)
+        public void Info(string message)
         {
             logRepository.Log("INFO: " + message);
         }

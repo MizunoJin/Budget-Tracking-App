@@ -8,6 +8,7 @@ namespace Budget_Tracking_App
     {
         private static BudgetApp _instance;
         private static readonly object _lock = new object();
+        private static readonly Logger logger = Logger.GetInstance();
 
         private BudgetApp()
         {}
@@ -32,6 +33,7 @@ namespace Budget_Tracking_App
             // Make seed data for testing
             User user = SeedData.GetTestUser();
             Console.WriteLine($"Welcome {user.Name}!");
+            logger.Info($"BudgetApp started for user {user.Name}.");
 
             bool exit = false;
             while (!exit)
@@ -39,6 +41,7 @@ namespace Budget_Tracking_App
                 DisplayMainMenu();
                 exit = ProcessMainMenuOption(user);
             }
+            logger.Info("BudgetApp session ended.");
         }
 
         private void DisplayMainMenu()
@@ -86,9 +89,11 @@ namespace Budget_Tracking_App
                     BudgetService.TrackBudget(user);
                     break;
                 case "9":
+                    logger.Info("User chose to exit the application.");
                     return true;
                 default:
                     Console.WriteLine("Invalid option, try again.");
+                    logger.Warn("User selected an invalid option.");
                     break;
             }
             Console.WriteLine();

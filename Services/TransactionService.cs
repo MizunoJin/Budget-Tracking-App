@@ -1,15 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Budget_Tracking_App.Models;
 
 namespace Budget_Tracking_App.Services
 {
     public class TransactionService
     {
+        private static readonly Logger logger = Logger.GetInstance();
+
         public static void ViewTransactions(User user)
         {
+            logger.Debug($"Viewing transactions for user {user.Name}.");
+
             foreach (var transaction in user.TransactionList)
             {
                 Console.WriteLine($"Transaction ID: {transaction.TransactionId}");
@@ -21,10 +21,13 @@ namespace Budget_Tracking_App.Services
                 Console.WriteLine($"Category: {transaction.Category.Name}");
                 Console.WriteLine("------------------------------");
             }
+
+            logger.Info($"Transactions viewed for user {user.Name}.");
         }
 
         public static void EnterTransaction(User user)
         {
+            logger.Debug($"Entering transaction for user {user.Name}.");
             Console.WriteLine("Enter transaction details");
 
             Console.Write("Date (yyyy-MM-dd): ");
@@ -61,10 +64,12 @@ namespace Budget_Tracking_App.Services
 
             user.TransactionList.Add(newTransaction);
             Console.WriteLine("Transaction added successfully.");
+            logger.Info($"Transaction added for user {user.Name}.");
         }
 
         public static void EditTransactions(User user)
         {
+            logger.Debug($"Editing transaction for user {user.Name}.");
             Console.WriteLine("Edit transaction details");
             Console.Write("Enter Transaction ID to edit: ");
             int transactionId = int.Parse(Console.ReadLine());
@@ -119,10 +124,12 @@ namespace Budget_Tracking_App.Services
             transactionToEdit.Category = CategoryService.SelectCategory(categories);
 
             Console.WriteLine("Transaction updated successfully.");
+            logger.Info($"Transaction updated for user {user.Name}.");
         }
 
         public static void DeleteTransactions(User user)
         {
+            logger.Debug($"Deleting transaction for user {user.Name}.");
             Console.WriteLine("Enter the Transaction ID to delete:");
             int transactionId = int.Parse(Console.ReadLine());
 
@@ -132,6 +139,7 @@ namespace Budget_Tracking_App.Services
             {
                 user.TransactionList.Remove(transaction);
                 Console.WriteLine("Transaction deleted successfully.");
+                logger.Info($"Transaction deleted for user {user.Name}.");
             }
             else
             {

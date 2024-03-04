@@ -14,18 +14,18 @@ class Program
         {
             // Use ConsoleRepository in development
             logger.SetLogRepository(new FlatFileRepository());
-            logger.Inform("Logging to console in development environment.");
+            logger.Info("Logging to console in development environment.");
         }
         else
         {
             // Use FlatFileRepository in other environments
             logger.SetLogRepository(new DatabaseRepository());
-            logger.Inform("Logging to database in non-development environment.");
+            logger.Info("Logging to database in non-development environment.");
         }
 
         var app = BudgetApp.GetInstance();
         app.Run();
-        logger.Inform("Application has finished running.");
+        logger.Info("Application has finished running.");
     }
 }
 
