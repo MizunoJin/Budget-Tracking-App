@@ -12,13 +12,13 @@ class Program
 
         if (environment == "development")
         {
-            // Use ConsoleRepository in development
+            // Use FlatFileRepository in development
             logger.SetLogRepository(new FlatFileRepository());
             logger.Info("Logging to console in development environment.");
         }
         else
         {
-            // Use FlatFileRepository in other environments
+            // Use DatabaseRepository in other environments
             logger.SetLogRepository(new DatabaseRepository());
             logger.Info("Logging to database in non-development environment.");
         }
