@@ -2,7 +2,7 @@
 
 ## Date
 
-21th Wednesday, 2024
+21th February, 2024
 
 ## Location
 

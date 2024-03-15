@@ -2,7 +2,7 @@
 
 ## Date
 
-26th Monday, 2024
+26th February, 2024
 
 ## Location
 
