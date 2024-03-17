@@ -14,8 +14,21 @@ namespace Budget_Tracking_App.Services
             CategoryService.DisplayCategories(categories);
             var category = CategoryService.SelectCategory(categories);
 
-            Console.WriteLine("Enter the budget amount:");
-            double amount = Convert.ToDouble(Console.ReadLine());
+            double amount = 0;
+            bool isValidAmount = false;
+
+            while (!isValidAmount)
+            {
+                Console.WriteLine("Enter the budget amount (positive number):");
+                if (double.TryParse(Console.ReadLine(), out amount) && amount >= 0)
+                {
+                    isValidAmount = true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid amount. Please enter a positive number.");
+                }
+            }
 
             Budget newBudget = new Budget
             {
