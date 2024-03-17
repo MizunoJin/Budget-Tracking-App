@@ -58,8 +58,24 @@ namespace Budget_Tracking_App.Services
         {
             logger.Debug($"Entering a new category for user {user.Name}.");
 
-            Console.WriteLine("Enter new category name:");
-            string categoryName = Console.ReadLine() ?? "Default Category";
+            bool isUniqueCategoryName = false;
+            string categoryName = "";
+
+            while (!isUniqueCategoryName)
+            {
+                Console.WriteLine("Enter new category name:");
+                categoryName = Console.ReadLine() ?? "Default Category";
+
+                // Check if the category name already exists
+                if (user.GetCategories().Any(cat => cat.Name.Equals(categoryName, StringComparison.OrdinalIgnoreCase)))
+                {
+                    Console.WriteLine($"A category with the name '{categoryName}' already exists. Please enter a different name.");
+                }
+                else
+                {
+                    isUniqueCategoryName = true;
+                }
+            }
 
             UserCategory newUserCategory = new UserCategory
             {
