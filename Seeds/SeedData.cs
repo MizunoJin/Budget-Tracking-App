@@ -7,10 +7,10 @@ namespace Budget_Tracking_App.Seeds
         public static User GetTestUser()
         {
             // Initialize categories
-            var groceries = new PresetCategory { Name = "Groceries" };
-            var utilities = new PresetCategory { Name = "Utilities" };
-            var salary = new PresetCategory { Name = "Salary" };
-            var entertainment = new PresetCategory { Name = "Entertainment" };
+            var groceries = CategoryFactory.CreatePresetCategory("Groceries");
+            var utilities = CategoryFactory.CreatePresetCategory("Utilities");
+            var salary = CategoryFactory.CreatePresetCategory("Salary");
+            var entertainment = CategoryFactory.CreatePresetCategory("Entertainment");
 
             // Initialize user with transactions
             var user = new User
@@ -21,7 +21,7 @@ namespace Budget_Tracking_App.Seeds
             };
 
             // Create UserCategories for user
-            UserCategory UserCategory = new UserCategory { Name = "Porn", User = user };
+            UserCategory UserCategory = CategoryFactory.CreateUserCategory("Dating", user);
             user.UserCategoryList.Add(UserCategory);
 
             // Initialize transactions

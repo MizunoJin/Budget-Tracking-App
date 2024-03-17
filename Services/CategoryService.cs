@@ -77,13 +77,7 @@ namespace Budget_Tracking_App.Services
                 }
             }
 
-            UserCategory newUserCategory = new UserCategory
-            {
-                User = user,
-                Name = categoryName,
-                Balance = 0 // Initial balance can be set here
-            };
-
+            UserCategory newUserCategory = CategoryFactory.CreateUserCategory(categoryName, user);
             user.UserCategoryList.Add(newUserCategory);
 
             Console.WriteLine($"New category '{categoryName}' has been added successfully.");
