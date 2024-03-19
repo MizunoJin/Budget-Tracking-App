@@ -47,7 +47,6 @@ namespace Budget_Tracking_App.Services
                 Console.WriteLine($"Category ID: {category.CategoryId}");
                 Console.WriteLine($"Name: {category.Name}");
                 Console.WriteLine($"Budget Allocated: {budget?.Amount.ToString() ?? "N/A"}");
-                Console.WriteLine($"Balance: {category.Balance}");
                 Console.WriteLine("------------------------------");
             }
 
