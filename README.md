@@ -84,7 +84,7 @@ The `CalcSpent` method in the `User` class calculates spending for a user in a s
 ![screenshot](./assets/tests/9.png)
 ![screenshot](./assets/tests/10.png)
 
--**Negative Test:** Attempt to delete a non-existent transaction.
+- **Negative Test:** Attempt to delete a non-existent transaction.
 
 ![screenshot](./assets/tests/11.png)
 
