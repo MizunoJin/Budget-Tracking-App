@@ -47,3 +47,84 @@ The `CalcSpent` method in the `User` class calculates spending for a user in a s
 - **Use Cases as Service Layer**: As the program expanded and the `Program.cs` file became lengthy and cluttered, files were segmented according to domain areas and stored within the `Services` directory. This reorganization improved code structure and manageability.
 - **Defining Methods within Models**: Operations tied to a specific model and called multiple times within the service layer are defined as methods within the model itself. For example, the operation to retrieve all categories of a user is defined as the `GetCategories` method within the `User` model. This approach enhances code reusability and organization.
 - **Transaction Management**: Transactions are categorized into two types: Expenses and Income. These categories are managed through an Enum named `TransactionType`, with attributes defined as `Type` within transactions. This distinction clarifies transaction types, simplifying their management.
+
+## Testing
+
+### Allow a user to see a list of recent transactions
+
+- **Positive Test:** Verify that the recent transactions list is displayed correctly.
+
+![screenshot-1](./assets/tests/1.png)
+![screenshot-2](./assets/tests/2.png)
+
+- **Negative Test:** Check the error warning when entering invalid option.
+
+![screenshot-3](./assets/tests/3.png)
+![screenshot-4](./assets/tests/4.png)
+
+### Allow a user to enter a new transaction
+
+- **Positive Test 1:** Add a new transaction with Date, type (income/expense), recurring, note, amount, and category.
+
+![screenshot-5](./assets/tests/5.png)
+
+- **Positive Test 2:** Edit a note and specify whether it is a recurring.
+
+![screenshot-6](./assets/tests/6.png)
+
+- **Negative Test:** Attempt to add a transaction with missing information.
+
+![screenshot-7](./assets/tests/7.png)
+
+### Allow the user to edit/delete transactions
+
+- **Positive Test:** Edit an existing transaction and verify the changes.
+
+![screenshot-8](./assets/tests/8.png)
+![screenshot](./assets/tests/9.png)
+![screenshot](./assets/tests/10.png)
+
+-**Negative Test:** Attempt to delete a non-existent transaction.
+
+![screenshot](./assets/tests/11.png)
+
+### Allow the user to see a list of categories
+
+- **Positive Test1:** Verify that the preset categories are displayed.
+
+![screenshot](./assets/tests/12.png)
+
+- **Positive Test2:** An advanced application will allow the user to add new categories.
+
+![screenshot](./assets/tests/13.png)
+![screenshot](./assets/tests/14.png)
+
+- **Negative Test:** Check the error handling when entering invalid categories option.
+
+![screenshot](./assets/tests/15.png)
+
+### Allow the user to enter a budget
+
+- **Positive Test:** Set budgets for each category and verify the changes.
+
+![screenshot](./assets/tests/16.png)
+
+- **Negative Test:** Attempt to enter invalid budget amounts.
+
+![screenshot](./assets/tests/17.png)
+![screenshot](./assets/tests/18.png)
+
+### Allow the user to track their progress against their budget
+
+- **Positive Test:** Check if spending is accurately tracked against the budget for each category and overall.
+
+![screenshot](./assets/tests/19.png)
+![screenshot](./assets/tests/20.png)
+
+### Test Results
+
+All test cases passed successfully without any errors or unexpected behaviour.
+
+### Conclusion
+
+The budget application has been thoroughly tested, and all requirements have been successfully implemented. The application provides users with comprehensive features for managing their finances effectively.
