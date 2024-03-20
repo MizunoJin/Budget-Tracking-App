@@ -91,7 +91,6 @@ The UML object diagram offers insight into the current state of the system by sh
 During the analysis phase to validate the system's design and ensure it aligns with requirements.
 
 For testing and validation purposes to verify object interactions and behaviours. As a communication tool to discuss and clarify specific system states or scenarios with stakeholders.
-![UML](./assets/UML.drawio.png)
 
 ## Implementation
 
