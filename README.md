@@ -23,18 +23,27 @@ During the design process, class and object diagrams were created to visually re
 #### Classes
 
 User: Represents users of the system, featuring attributes like userId, username, email.
+
 Transaction: Represents financial transactions made by users, with attributes such as transactionId, transaction date, type, note and transaction amount.
+
 Budget: Represents budgets set by users, including attributes like budgetId, amount, category and user.
+
 Category: Represents transaction or budget categories, containing attributes like categoryId, name and transaction list.
+
 Inherited User Category: Represents categories inherited by users, inheriting properties from the Category class.
+
 Inherited Preset Category: Represents categories inherited by preset categories, also inheriting properties from the Category class.
 
 #### Relationships
 
 User-Transaction (One-to-Many): Indicates that a user can have multiple transactions, while each transaction belongs to only one user. This relationship is depicted with a one-to-many association and multiplicity notation (1..*).
+
 User-Budget (One-to-Many): Represents that a user can have multiple budgets, with each budget belonging to a single user. Shown as a one-to-many association with multiplicity notation (1..*).
+
 User-Category (One-to-Many): Illustrates that a user can have multiple categories, each category being associated with only one user. Presented as a one-to-many association with multiplicity notation (0..*).
+
 Category-Transaction (One-to-Many): Indicates that a category can be associated with multiple transactions, while each transaction is associated with only one category. Shown as a one-to-many association with multiplicity notation (1..*).
+
 Budget-Category (One-to-One): Represents a one-to-one relationship between budgets and categories, indicating that each budget has only one category associated with it. Displayed as a one-to-one association with multiplicity notation (1..1).
 
 #### Purpose
@@ -44,9 +53,13 @@ The UML class diagram with multiplicities and relationships serves as a comprehe
 #### Usage
 
 Design Phase: Used during the initial design phase to plan and model the system's architecture, ensuring that classes are properly organized and relationships are well-defined.
+
 Development Phase: Serves as a reference for developers during the implementation of the system, guiding the coding process and ensuring consistency with the design specifications.
+
 Documentation: Provides valuable documentation for the system, helping to communicate the system's structure and functionality to team members, stakeholders, and future developers.
+
 Testing and Validation: Supports testing and validation efforts by providing insights into how data flows between classes and how different components of the system interact with each other.
+
 In summary, the UML class diagram with multiplicities and relationships is an essential tool for understanding, designing, and communicating the structural aspects of a system, facilitating effective collaboration and development efforts.
 
 ### UML Object Diagram
@@ -60,9 +73,13 @@ The UML object diagram for your project illustrates specific instances of classe
 #### Key Components
 
 User Instance: Represents an instance of the User class with attributes such as user Id, username and email populated with specific values.
+
 Transaction Instance: Illustrates an instance of the Transaction class with attributes like transaction Id, date, type, recurring, note, amount and category populated with relevant data.
+
 Budget Instance: Depicts an instance of the Budget class with attributes including category ID, budget amount, spent and remaining containing specific values.
+
 Category Instances: Represent instances of the Category class, each with categoryId, name, allocated budget and balance attributes reflecting concrete category examples.
+
 Relationships: Connections between instances, indicating associations, dependencies, and inheritance relationships as defined in the class diagram.
 
 #### Purpose
@@ -72,6 +89,7 @@ The UML object diagram offers insight into the current state of the system by sh
 #### Usage
 
 During the analysis phase to validate the system's design and ensure it aligns with requirements.
+
 For testing and validation purposes to verify object interactions and behaviours. As a communication tool to discuss and clarify specific system states or scenarios with stakeholders.
 ![UML](./assets/UML.drawio.png)
 
