@@ -10,8 +10,69 @@
 
 ## Design
 
-During the design process, class and object diagrams were created to visually represent the structure and relationships of important components in the application. The classes included in the system are User, Transaction, Budget, Category, Inherited User Category, and Inherited Preset Category. Each class has its own set of properties and methods. Inheritance was employed to establish linkages between the category and the Inherited User Category and Inherited Preset Category.
+### UML Class Diagram
 
+![ClassDiagram](./assets/designs/ClassDiagram.jpeg)
+
+### Description
+
+During the design process, class and object diagrams were created to visually represent the structure and relationships of important components in the application. The classes included in the system are User, Transaction, Budget, Category, Inherited User Category, and Inherited Preset Category. Each class has its own set of properties and methods. Inheritance was employed to establish linkages between the category and the Inherited User Category and Inherited Preset Category. The UML class diagram with multiplicities and relationships depicts the structural organization of classes within the system, emphasizing associations, dependencies, and the cardinality of relationships between classes. This diagram provides a detailed blueprint of how classes interact and collaborate to fulfill system functionalities, guiding the design and development process.
+
+### Key Components
+
+#### Classes
+
+User: Represents users of the system, featuring attributes like userId, username, email.
+Transaction: Represents financial transactions made by users, with attributes such as transactionId, transaction date, type, note and transaction amount.
+Budget: Represents budgets set by users, including attributes like budgetId, amount, category and user.
+Category: Represents transaction or budget categories, containing attributes like categoryId, name and transaction list.
+Inherited User Category: Represents categories inherited by users, inheriting properties from the Category class.
+Inherited Preset Category: Represents categories inherited by preset categories, also inheriting properties from the Category class.
+
+#### Relationships
+
+User-Transaction (One-to-Many): Indicates that a user can have multiple transactions, while each transaction belongs to only one user. This relationship is depicted with a one-to-many association and multiplicity notation (1..*).
+User-Budget (One-to-Many): Represents that a user can have multiple budgets, with each budget belonging to a single user. Shown as a one-to-many association with multiplicity notation (1..*).
+User-Category (One-to-Many): Illustrates that a user can have multiple categories, each category being associated with only one user. Presented as a one-to-many association with multiplicity notation (0..*).
+Category-Transaction (One-to-Many): Indicates that a category can be associated with multiple transactions, while each transaction is associated with only one category. Shown as a one-to-many association with multiplicity notation (1..*).
+Budget-Category (One-to-One): Represents a one-to-one relationship between budgets and categories, indicating that each budget has only one category associated with it. Displayed as a one-to-one association with multiplicity notation (1..1).
+
+#### Purpose
+
+The UML class diagram with multiplicities and relationships serves as a comprehensive guide to understanding the structure and interactions of classes within the system. It enables developers, testers, and stakeholders to visualize how classes are connected and how data flows between them. This diagram aids in designing, implementing, and maintaining the system by providing a clear representation of class relationships and dependencies.
+
+#### Usage
+
+Design Phase: Used during the initial design phase to plan and model the system's architecture, ensuring that classes are properly organized and relationships are well-defined.
+Development Phase: Serves as a reference for developers during the implementation of the system, guiding the coding process and ensuring consistency with the design specifications.
+Documentation: Provides valuable documentation for the system, helping to communicate the system's structure and functionality to team members, stakeholders, and future developers.
+Testing and Validation: Supports testing and validation efforts by providing insights into how data flows between classes and how different components of the system interact with each other.
+In summary, the UML class diagram with multiplicities and relationships is an essential tool for understanding, designing, and communicating the structural aspects of a system, facilitating effective collaboration and development efforts.
+
+### UML Object Diagram
+
+![ObjectDiagram](./assets/designs/ObjectDiagram.jpeg)
+
+#### Description
+
+The UML object diagram for your project illustrates specific instances of classes and their relationships within the system. It provides a snapshot of the system's state at a particular point in time, showcasing concrete examples of objects and their connections. This diagram aids in understanding how classes interact and collaborate to fulfil system requirements.
+
+#### Key Components
+
+User Instance: Represents an instance of the User class with attributes such as user Id, username and email populated with specific values.
+Transaction Instance: Illustrates an instance of the Transaction class with attributes like transaction Id, date, type, recurring, note, amount and category populated with relevant data.
+Budget Instance: Depicts an instance of the Budget class with attributes including category ID, budget amount, spent and remaining containing specific values.
+Category Instances: Represent instances of the Category class, each with categoryId, name, allocated budget and balance attributes reflecting concrete category examples.
+Relationships: Connections between instances, indicating associations, dependencies, and inheritance relationships as defined in the class diagram.
+
+#### Purpose
+
+The UML object diagram offers insight into the current state of the system by showcasing actual instances of classes and their relationships. It aids in validating the design, testing functionalities, and communicating specific scenarios or use cases with stakeholders.
+
+#### Usage
+
+During the analysis phase to validate the system's design and ensure it aligns with requirements.
+For testing and validation purposes to verify object interactions and behaviours. As a communication tool to discuss and clarify specific system states or scenarios with stakeholders.
 ![UML](./assets/UML.drawio.png)
 
 ## Implementation
@@ -62,72 +123,72 @@ The `CalcSpent` method in the `User` class calculates spending for a user in a s
 
 - **Positive Test:** Verify that the recent transactions list is displayed correctly.
 
-![screenshot-1](./assets/tests/1.png)
-![screenshot-2](./assets/tests/2.png)
+<img src="./assets/tests/1.png" width="50%">
+<img src="./assets/tests/2.png" width="50%">
 
 - **Negative Test:** Check the error warning when entering invalid option.
 
-![screenshot-3](./assets/tests/3.png)
-![screenshot-4](./assets/tests/4.png)
+<img src="./assets/tests/3.png" width="50%">
+<img src="./assets/tests/4.png" width="50%">
 
 ### Allow a user to enter a new transaction
 
 - **Positive Test 1:** Add a new transaction with Date, type (income/expense), recurring, note, amount, and category.
 
-![screenshot-5](./assets/tests/5.png)
+<img src="./assets/tests/5.png" width="50%">
 
 - **Positive Test 2:** Edit a note and specify whether it is a recurring.
 
-![screenshot-6](./assets/tests/6.png)
+<img src="./assets/tests/6.png" width="50%">
 
 - **Negative Test:** Attempt to add a transaction with missing information.
 
-![screenshot-7](./assets/tests/7.png)
+<img src="./assets/tests/7.png" width="50%">
 
 ### Allow the user to edit/delete transactions
 
 - **Positive Test:** Edit an existing transaction and verify the changes.
 
-![screenshot-8](./assets/tests/8.png)
-![screenshot](./assets/tests/9.png)
-![screenshot](./assets/tests/10.png)
+<img src="./assets/tests/8.png" width="50%">
+<img src="./assets/tests/9.png" width="50%">
+<img src="./assets/tests/10.png" width="50%">
 
 - **Negative Test:** Attempt to delete a non-existent transaction.
 
-![screenshot](./assets/tests/11.png)
+<img src="./assets/tests/11.png" width="50%">
 
 ### Allow the user to see a list of categories
 
 - **Positive Test1:** Verify that the preset categories are displayed.
 
-![screenshot](./assets/tests/12.png)
+<img src="./assets/tests/12.png" width="50%">
 
 - **Positive Test2:** An advanced application will allow the user to add new categories.
 
-![screenshot](./assets/tests/13.png)
-![screenshot](./assets/tests/14.png)
+<img src="./assets/tests/13.png" width="50%">
+<img src="./assets/tests/14.png" width="50%">
 
 - **Negative Test:** Check the error handling when entering invalid categories option.
 
-![screenshot](./assets/tests/15.png)
+<img src="./assets/tests/15.png" width="50%">
 
 ### Allow the user to enter a budget
 
 - **Positive Test:** Set budgets for each category and verify the changes.
 
-![screenshot](./assets/tests/16.png)
+<img src="./assets/tests/16.png" width="50%">
 
 - **Negative Test:** Attempt to enter invalid budget amounts.
 
-![screenshot](./assets/tests/17.png)
-![screenshot](./assets/tests/18.png)
+<img src="./assets/tests/17.png" width="50%">
+<img src="./assets/tests/18.png" width="50%">
 
 ### Allow the user to track their progress against their budget
 
 - **Positive Test:** Check if spending is accurately tracked against the budget for each category and overall.
 
-![screenshot](./assets/tests/19.png)
-![screenshot](./assets/tests/20.png)
+<img src="./assets/tests/19.png" width="50%">
+<img src="./assets/tests/20.png" width="50%">
 
 ### Test Results
 
